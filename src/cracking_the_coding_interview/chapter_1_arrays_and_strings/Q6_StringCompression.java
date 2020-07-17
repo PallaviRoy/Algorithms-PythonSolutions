@@ -8,4 +8,28 @@ the original string. You can assume the string has only uppercase and lowercase 
 * */
 
 public class Q6_StringCompression {
+
+    public String compress (String s) {
+        if (s == null)
+            return s;
+
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+
+        for (int index = 0; index < s.length()-1; index++) {
+            if (s.charAt(index+1) != s.charAt(index) || index+1 >= s.length()) {
+                sb.append(s.charAt(index));
+                sb.append(count);
+                count = 1;
+            }
+            else
+                count++;
+        }
+        return sb.length() < s.length() ? sb.toString() : s;
+    }
+
+    public static void main(String[] args) {
+        Q6_StringCompression q6 = new Q6_StringCompression();
+        System.out.println(q6.compress("aabcccccaaa"));
+    }
 }
